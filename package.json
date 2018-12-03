@@ -1,0 +1,19 @@
+{
+  "name": "unknown-chapters-lambdas",
+  "version": "1.0.0",
+  "description": "Lambda functions for the Unknown Chapters serverless API",
+  "main": "getEpkData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tudor Rotarus",
+  "license": "ISC",
+  "dependencies": {
+    "gm": "^1.23.1",
+    "mysql": "^2.16.0",
+    "sharp": "^0.21.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.369.0"
+  }
+}
