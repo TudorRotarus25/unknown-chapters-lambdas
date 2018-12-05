@@ -24,8 +24,8 @@ class MySqlAdapter {
     this.connection.end();
   }
 
-  getAllImages() {
-    const query = 'SELECT `id`, `path`, `alt` FROM `epk_images` ORDER BY `order` LIMIT 500;';
+  getAllImages(basePath) {
+    const query = 'SELECT `id`, `path` FROM `epk_images` ORDER BY `order` LIMIT 500;';
 
     return new Promise((resolve, reject) => {
       this.connection.query(query, (error, results) => {
@@ -35,8 +35,26 @@ class MySqlAdapter {
 
         resolve(results.map((item) => ({
           id: item.id,
-          path: item.path,
-          alt: item.alt,
+          path: basePath + 'images/original/' + item.path,
+          thumbnail: basePath + 'images/thumbnails/' + item.path,
+        })));
+      });
+    });
+  }
+
+  getAllVisuals(basePath) {
+    const query = 'SELECT `id`, `path` FROM `epk_visuals` ORDER BY `order` LIMIT 500;';
+
+    return new Promise((resolve, reject) => {
+      this.connection.query(query, (error, results) => {
+        if (error) {
+          reject(error);
+        }
+
+        resolve(results.map((item) => ({
+          id: item.id,
+          path: basePath + 'visuals/original/' + item.path,
+          thumbnail: basePath + 'visuals/thumbnails/' + item.path,
         })));
       });
     });
